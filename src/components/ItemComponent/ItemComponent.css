@@ -1,0 +1,10 @@
+.item-component {
+    width: 9rem;
+    height: 3rem;
+    border: 1px solid #cccccc;
+    border-radius: .7rem;
+    text-align: center;
+    line-height: 2.8rem;
+    margin-bottom: 1rem;
+    user-select: none;
+}

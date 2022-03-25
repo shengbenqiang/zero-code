@@ -1,10 +1,10 @@
 <template>
-  <div class="operate">运行等操作</div>
+  <div class="operate-con">运行等操作</div>
 </template>
 
-<script>
+<script lang="ts">
 import { defineComponent } from "vue";
-import "./Operate.css";
+import "./OperateCom.css";
 
 export default defineComponent({
   name: "OperateCom",

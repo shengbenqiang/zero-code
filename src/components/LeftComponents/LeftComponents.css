@@ -1,0 +1,31 @@
+.left-components {
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    padding: 1rem;
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+.left-components::-webkit-scrollbar {
+    display: none;
+}
+.left-components-block-con {
+    width: 100%;
+}
+.left-components-block-con-title {
+    width: 100%;
+    height: 3rem;
+    line-height: 3rem;
+    text-align: center;
+    user-select: none;
+    font-size: 1.3rem;
+}
+.left-components-block-con-components-con {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 1rem 2rem 0 2rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
