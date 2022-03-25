@@ -1,7 +1,7 @@
 <script lang="ts">
-import { defineComponent, h, inject, watch } from "vue";
+import { defineComponent, h, inject, watch, ref, VNode } from "vue";
 import "./RenderCom.css";
-import { RenderDate } from "@/untils/types";
+import { Component, RenderDate } from "@/untils/types";
 
 export default defineComponent({
   name: "RenderCom",
@@ -10,18 +10,24 @@ export default defineComponent({
       "RenderView",
       {} as RenderDate
     );
+    const renderArr = ref<VNode[]>([]);
 
     watch(
       () => RenderView.renderComponents,
       (newRender) => {
         if (newRender.length > 0) {
           newRender.forEach((itemRender) => {
-            console.log(itemRender);
+            renderArr.value.push(handleRender(itemRender));
           });
+          console.log(...renderArr.value);
         }
       },
       { deep: true }
     );
+
+    function handleRender(com: Component): VNode {
+      return h(com.tag, { props: { ...com.props } }, ["按钮"]);
+    }
 
     return () =>
       h(
@@ -29,7 +35,7 @@ export default defineComponent({
         {
           class: ["render-com"],
         },
-        "渲染组件"
+        [...renderArr.value]
       );
   },
 });

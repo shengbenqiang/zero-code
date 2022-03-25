@@ -1,7 +1,7 @@
 export interface Component {
   key: string;
   name: string;
-  tag?: string;
+  tag: string;
   content?: string;
   props?: object;
   config?: object;
