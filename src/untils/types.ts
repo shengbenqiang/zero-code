@@ -2,15 +2,21 @@ export interface Component {
   key: string;
   name: string;
   tag: string;
+  uuid?: string;
   content?: string;
-  props?: object;
+  props: commonObj;
   config?: object;
+  locateProps?: commonObj;
 }
 
 export interface DesignDate {
   name: string;
   selectComponent: Component;
   getComponentAttributes: SelectComponent;
+}
+
+interface commonObj {
+  [key: string]: string | boolean | number;
 }
 
 export interface RenderDate {

@@ -6,6 +6,10 @@
     </CommonAttrName>
     <div class="button-attrs-room">
       <div class="button-attrs-item-attr">
+        <span>组件唯一 key：</span>
+        <a-input v-model:value="uuid" disabled />
+      </div>
+      <div class="button-attrs-item-attr">
         <span>禁用：</span>
         <a-switch
           v-model:checked="props.disabled"
@@ -40,7 +44,7 @@
             :key="itemShape.key"
             :value="itemShape.value"
           >
-            {{ itemShape.value }}
+            {{ itemShape.key }}
           </a-select-option>
         </a-select>
       </div>
@@ -55,7 +59,7 @@
             :key="itemSize.key"
             :value="itemSize.value"
           >
-            {{ itemSize.value }}
+            {{ itemSize.key }}
           </a-select-option>
         </a-select>
       </div>
@@ -70,7 +74,37 @@
             :key="itemType.key"
             :value="itemType.value"
           >
-            {{ itemType.value }}
+            {{ itemType.key }}
+          </a-select-option>
+        </a-select>
+      </div>
+      <div class="button-attrs-item-attr">
+        <span>垂直方向：</span>
+        <a-select
+          v-model:value="locateProps.align"
+          class="button-attrs-item-attr-select"
+        >
+          <a-select-option
+            v-for="itemAlign in config.locateAlign"
+            :key="itemAlign.key"
+            :value="itemAlign.value"
+          >
+            {{ itemAlign.key }}
+          </a-select-option>
+        </a-select>
+      </div>
+      <div class="button-attrs-item-attr">
+        <span>水平方向：</span>
+        <a-select
+          v-model:value="locateProps.justify"
+          class="button-attrs-item-attr-select"
+        >
+          <a-select-option
+            v-for="itemJustify in config.locateJustify"
+            :key="itemJustify.key"
+            :value="itemJustify.value"
+          >
+            {{ itemJustify.key }}
           </a-select-option>
         </a-select>
       </div>
@@ -97,8 +131,10 @@ export default defineComponent({
     const { selectComponent } = DesignView;
 
     return {
+      uuid: selectComponent.uuid,
       props: selectComponent.props,
       config: selectComponent.config,
+      locateProps: selectComponent.locateProps,
     };
   },
 });

@@ -18,14 +18,17 @@
     flex-direction: row;
     align-items: center;
     box-sizing: border-box;
-    padding-left: 2rem;
+    padding: 0 2rem 0 2rem;
 }
 .button-attrs-item-attr > span:nth-child(1) {
     display: inline-block;
     margin-right: 1rem;
     font-size: 1.3rem;
+    white-space: nowrap;
+    user-select: none;
 }
 .button-attrs-item-attr-select {
     width: calc(100% - 10rem);
+    display: flex;
     border-radius: 0.5rem!important;
 }

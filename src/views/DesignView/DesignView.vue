@@ -21,6 +21,7 @@ import OperateCom from "@/components/OperateCom/OperateCom.vue";
 import RightComAttrs from "@/components/RightComAttrs/RightComAttrs.vue";
 import LeftComponents from "@/components/LeftComponents/LeftComponents.vue";
 import { Component, DesignDate } from "@/untils/types";
+import { guid } from "@/untils/renderSolve";
 
 export default defineComponent({
   name: "DesignView",
@@ -35,8 +36,17 @@ export default defineComponent({
     const renderComponents = ref<Component[]>([]);
 
     function getComponentAttributes(attrs: Component) {
+      if (attrs.uuid) {
+        renderComponents.value.forEach((itemCom) => {
+          if (itemCom.uuid === attrs.uuid) {
+            Object.assign(itemCom, attrs);
+          }
+        });
+      } else {
+        attrs.uuid = guid();
+        renderComponents.value.push(attrs);
+      }
       Object.assign(selectComponent, attrs);
-      renderComponents.value.push(attrs);
     }
 
     provide(

@@ -1,21 +1,24 @@
 <template>
   <div class="render-com-con">
-    <div
-      class="render-item-component"
-      v-for="itemCom in renderArr"
-      :key="itemCom.key"
-    >
-      <component :is="itemCom.tag" v-bind="itemCom.props">
-        {{ itemCom.content }}
-      </component>
-    </div>
+    <template v-for="itemCom in renderArr" :key="itemCom.key">
+      <a-row
+        class="render-item-component"
+        :align="itemCom.locateProps.align"
+        :justify="itemCom.locateProps.justify"
+      >
+        <component :is="itemCom.tag" v-bind="itemCom.props">
+          {{ itemCom.content }}
+        </component>
+      </a-row>
+    </template>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent, inject, watch, ref } from "vue";
 import "./RenderCom.css";
-import { Component, RenderDate } from "@/untils/types";
+import { RenderDate, Component } from "@/untils/types";
+import { deepClone } from "@/untils/renderSolve";
 
 export default defineComponent({
   name: "RenderCom",
@@ -24,16 +27,24 @@ export default defineComponent({
       "RenderView",
       {} as RenderDate
     );
+
     const renderArr = ref<Component[]>([]);
 
     watch(
       () => RenderView.renderComponents,
-      (newRender) => {
-        if (newRender.length > 0) {
-          newRender.forEach((itemRender) => {
-            renderArr.value.push(itemRender);
+      (newValue) => {
+        const newRenderComs = deepClone(newValue);
+        newRenderComs.forEach((itemCom) => {
+          Object.keys(itemCom.props).forEach((itemAttr) => {
+            if (
+              typeof itemCom.props[itemAttr] === "string" &&
+              !itemCom.props[itemAttr]
+            ) {
+              delete itemCom.props[itemAttr];
+            }
           });
-        }
+        });
+        renderArr.value = newRenderComs;
       },
       { deep: true }
     );
