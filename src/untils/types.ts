@@ -16,7 +16,7 @@ export interface DesignDate {
 }
 
 interface commonObj {
-  [key: string]: string | boolean | number;
+  [key: string]: string | boolean | number | undefined;
 }
 
 export interface RenderDate {

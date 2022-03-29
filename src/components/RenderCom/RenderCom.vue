@@ -5,6 +5,7 @@
         class="render-item-component"
         :align="itemCom.locateProps.align"
         :justify="itemCom.locateProps.justify"
+        @click="handleItemComClick"
       >
         <component :is="itemCom.tag" v-bind="itemCom.props">
           {{ itemCom.content }}
@@ -49,8 +50,13 @@ export default defineComponent({
       { deep: true }
     );
 
+    function handleItemComClick() {
+      console.log("选中已渲染的组件");
+    }
+
     return {
       renderArr,
+      handleItemComClick,
     };
   },
 });

@@ -215,7 +215,66 @@ export const componentDataEntryArr: Component[] = [
     key: "Input",
     name: "输入框",
     tag: "a-input",
-    props: {},
+    uuid: "",
+    props: {
+      disabled: false,
+      maxlength: undefined,
+      size: "default",
+      bordered: false,
+      placeholder: "默认内容",
+    },
+    config: {
+      size: [
+        {
+          key: "large",
+          value: "large",
+        },
+        {
+          key: "default",
+          value: "default",
+        },
+        {
+          key: "small",
+          value: "small",
+        },
+      ],
+      locateAlign: [
+        {
+          key: "top",
+          value: "top",
+        },
+        {
+          key: "middle",
+          value: "middle",
+        },
+        {
+          key: "bottom",
+          value: "bottom",
+        },
+      ],
+      locateJustify: [
+        {
+          key: "start",
+          value: "start",
+        },
+        {
+          key: "end",
+          value: "end",
+        },
+        {
+          key: "center",
+          value: "center",
+        },
+        {
+          key: "space-around",
+          value: "space-around",
+        },
+        {
+          key: "space-between",
+          value: "space-between",
+        },
+      ],
+    },
   },
   {
     key: "InputNumber",
