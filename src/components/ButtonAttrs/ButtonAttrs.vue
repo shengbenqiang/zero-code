@@ -74,9 +74,6 @@
           </a-select-option>
         </a-select>
       </div>
-      <div class="button-attrs-item-attr">
-        <a-button danger>按钮</a-button>
-      </div>
     </div>
   </div>
 </template>

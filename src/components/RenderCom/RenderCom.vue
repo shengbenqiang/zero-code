@@ -1,5 +1,19 @@
+<template>
+  <div class="render-com-con">
+    <div
+      class="render-item-component"
+      v-for="itemCom in renderArr"
+      :key="itemCom.key"
+    >
+      <component :is="itemCom.tag" v-bind="itemCom.props">
+        {{ itemCom.content }}
+      </component>
+    </div>
+  </div>
+</template>
+
 <script lang="ts">
-import { defineComponent, h, inject, watch, ref, VNode } from "vue";
+import { defineComponent, inject, watch, ref } from "vue";
 import "./RenderCom.css";
 import { Component, RenderDate } from "@/untils/types";
 
@@ -10,33 +24,23 @@ export default defineComponent({
       "RenderView",
       {} as RenderDate
     );
-    const renderArr = ref<VNode[]>([]);
+    const renderArr = ref<Component[]>([]);
 
     watch(
       () => RenderView.renderComponents,
       (newRender) => {
         if (newRender.length > 0) {
           newRender.forEach((itemRender) => {
-            renderArr.value.push(handleRender(itemRender));
+            renderArr.value.push(itemRender);
           });
-          console.log(...renderArr.value);
         }
       },
       { deep: true }
     );
 
-    function handleRender(com: Component): VNode {
-      return h(com.tag, { props: { ...com.props } }, ["按钮"]);
-    }
-
-    return () =>
-      h(
-        "div",
-        {
-          class: ["render-com"],
-        },
-        [...renderArr.value]
-      );
+    return {
+      renderArr,
+    };
   },
 });
 </script>
