@@ -1,0 +1,30 @@
+.common-right-item-attr {
+    width: 100%;
+    height: 5rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    box-sizing: border-box;
+    padding: 0 2rem 0 2rem;
+}
+.common-right-item-attr > span:nth-child(1) {
+    display: inline-block;
+    margin-right: 1rem;
+    font-size: 1.3rem;
+    white-space: nowrap;
+    user-select: none;
+}
+.common-right-all-attrs {
+    width: 100%;
+    height: calc(100 - 4rem);
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+.common-right-all-attrs::-webkit-scrollbar {
+    display: none;
+}
+.common-right-item-attr-select {
+    width: calc(100% - 10rem);
+    display: flex;
+    border-radius: 0.5rem!important;
+}

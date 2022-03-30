@@ -8,7 +8,7 @@ export const componentGeneralArr: Component[] = [
     content: "默认内容",
     uuid: "",
     props: {
-      block: false,
+      block: true,
       danger: false,
       disabled: false,
       shape: "",
@@ -111,6 +111,11 @@ export const componentGeneralArr: Component[] = [
       justify: "start",
       align: "middle",
     },
+    formItemProps: {
+      span: 2,
+      label: "",
+      name: "",
+    },
   },
 ];
 
@@ -212,7 +217,7 @@ export const componentDataEntryArr: Component[] = [
     props: {},
   },
   {
-    key: "Input",
+    key: "InputAttrs",
     name: "输入框",
     tag: "a-input",
     uuid: "",
@@ -274,6 +279,15 @@ export const componentDataEntryArr: Component[] = [
           value: "space-between",
         },
       ],
+    },
+    locateProps: {
+      justify: "start",
+      align: "middle",
+    },
+    formItemProps: {
+      span: undefined,
+      label: "默认标签",
+      name: "defaultTag",
     },
   },
   {

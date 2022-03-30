@@ -1,24 +1,38 @@
 <template>
-  <div class="render-com-con">
+  <a-form class="render-com-con">
     <template v-for="itemCom in renderArr" :key="itemCom.key">
       <a-row
         class="render-item-component"
+        :class="[
+          selectComponent.uuid === itemCom.uuid
+            ? 'render-select-item-component'
+            : '',
+        ]"
+        type="flex"
         :align="itemCom.locateProps.align"
         :justify="itemCom.locateProps.justify"
         @click="handleItemComClick"
       >
-        <component :is="itemCom.tag" v-bind="itemCom.props">
-          {{ itemCom.content }}
-        </component>
+        <a-col :span="itemCom.formItemProps.span">
+          <a-form-item
+            class="render-form-item"
+            :label="itemCom.formItemProps.label"
+            :name="itemCom.formItemProps.name"
+          >
+            <component :is="itemCom.tag" v-bind="itemCom.props">
+              {{ itemCom.content }}
+            </component>
+          </a-form-item>
+        </a-col>
       </a-row>
     </template>
-  </div>
+  </a-form>
 </template>
 
 <script lang="ts">
 import { defineComponent, inject, watch, ref } from "vue";
 import "./RenderCom.css";
-import { RenderDate, Component } from "@/untils/types";
+import { RenderDate, Component, DesignDate } from "@/untils/types";
 import { deepClone } from "@/untils/renderSolve";
 
 export default defineComponent({
@@ -28,6 +42,10 @@ export default defineComponent({
       "RenderView",
       {} as RenderDate
     );
+    // const { changeSelectComponent } = RenderView;
+
+    const DesignView: DesignDate = inject("DesignView", {} as DesignDate);
+    const { selectComponent } = DesignView;
 
     const renderArr = ref<Component[]>([]);
 
@@ -50,12 +68,13 @@ export default defineComponent({
       { deep: true }
     );
 
-    function handleItemComClick() {
-      console.log("选中已渲染的组件");
+    function handleItemComClick(uuid: string) {
+      console.log(uuid);
     }
 
     return {
       renderArr,
+      selectComponent,
       handleItemComClick,
     };
   },

@@ -1,15 +1,15 @@
 <template>
-  <div class="button-attrs">
+  <div class="input-attrs-con">
     <CommonAttrName>
-      <template #english>Button</template>
-      <template #chinese>按钮</template>
+      <template #english>Input</template>
+      <template #chinese>输入框</template>
     </CommonAttrName>
-    <div class="button-attrs-room">
-      <div class="button-attrs-item-attr">
+    <div class="common-right-all-attrs">
+      <div class="common-right-item-attr">
         <span>组件唯一 key：</span>
         <a-input v-model:value="uuid" disabled />
       </div>
-      <div class="button-attrs-item-attr">
+      <div class="common-right-item-attr">
         <span>禁用：</span>
         <a-switch
           v-model:checked="props.disabled"
@@ -17,21 +17,21 @@
           un-checked-children="否"
         />
       </div>
-      <div class="button-attrs-item-attr">
-        <span>父级宽度：</span>
+      <div class="common-right-item-attr">
+        <span>展示边框：</span>
         <a-switch
-          v-model:checked="props.block"
+          v-model:checked="props.bordered"
           checked-children="是"
           un-checked-children="否"
         />
       </div>
-      <div class="button-attrs-item-attr">
-        <span>危险按钮：</span>
-        <a-switch
-          v-model:checked="props.danger"
-          checked-children="是"
-          un-checked-children="否"
-        />
+      <div class="common-right-item-attr">
+        <span>输入提示：</span>
+        <a-input v-model:value="props.placeholder" />
+      </div>
+      <div class="common-right-item-attr">
+        <span>最大长度：</span>
+        <a-input v-model:value="props.maxlength" />
       </div>
       <div class="common-right-item-attr">
         <span>元素宽度：</span>
@@ -39,47 +39,16 @@
           v-model:value="formItemProps.span"
           type="number"
           :max="24"
-          :min="2"
+          :min="4"
         />
       </div>
-      <div class="button-attrs-item-attr">
-        <span>按钮形状：</span>
-        <a-select
-          v-model:value="props.shape"
-          class="button-attrs-item-attr-select"
-        >
-          <template v-for="itemShape in config.shape" :key="itemShape.key">
-            <a-select-option :value="itemShape.value">
-              {{ itemShape.key }}
-            </a-select-option>
-          </template>
-        </a-select>
+      <div class="common-right-item-attr">
+        <span>标签内容：</span>
+        <a-input v-model:value="formItemProps.label" />
       </div>
-      <div class="button-attrs-item-attr">
-        <span>按钮大小：</span>
-        <a-select
-          v-model:value="props.size"
-          class="button-attrs-item-attr-select"
-        >
-          <template v-for="itemSize in config.size" :key="itemSize.key">
-            <a-select-option :value="itemSize.value">
-              {{ itemSize.key }}
-            </a-select-option>
-          </template>
-        </a-select>
-      </div>
-      <div class="button-attrs-item-attr">
-        <span>按钮类型：</span>
-        <a-select
-          v-model:value="props.type"
-          class="button-attrs-item-attr-select"
-        >
-          <template v-for="itemType in config.type" :key="itemType.key">
-            <a-select-option :value="itemType.value">
-              {{ itemType.key }}
-            </a-select-option>
-          </template>
-        </a-select>
+      <div class="common-right-item-attr">
+        <span>标签字段：</span>
+        <a-input v-model:value="formItemProps.name" />
       </div>
       <div class="button-attrs-item-attr">
         <span>垂直方向：</span>
@@ -113,18 +82,32 @@
           </template>
         </a-select>
       </div>
+      <div class="common-right-item-attr">
+        <span>输入框大小：</span>
+        <a-select
+          v-model:value="props.size"
+          class="common-right-item-attr-select"
+        >
+          <template v-for="itemSize in config.size" :key="itemSize.key">
+            <a-select-option :value="itemSize.value">
+              {{ itemSize.key }}
+            </a-select-option>
+          </template>
+        </a-select>
+      </div>
     </div>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent, inject } from "vue";
-import "./ButtonAttrs.css";
+import "./InputAttrs.css";
+import "@/assets/commonCss/rightCom.css";
 import CommonAttrName from "@/components/CommonAttrName/CommonAttrName.vue";
 import { DesignDate } from "@/untils/types";
 
 export default defineComponent({
-  name: "ButtonAttrs",
+  name: "InputAttrs",
   components: {
     CommonAttrName,
   },

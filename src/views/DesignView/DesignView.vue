@@ -49,6 +49,10 @@ export default defineComponent({
       Object.assign(selectComponent, attrs);
     }
 
+    function changeSelectComponent(uuid: string) {
+      console.log(uuid);
+    }
+
     provide(
       "DesignView",
       reactive<DesignDate>({
@@ -62,6 +66,7 @@ export default defineComponent({
       "RenderView",
       reactive({
         renderComponents,
+        changeSelectComponent,
       })
     );
 

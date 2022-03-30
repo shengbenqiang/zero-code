@@ -7,6 +7,7 @@ export interface Component {
   props: commonObj;
   config?: object;
   locateProps?: commonObj;
+  formItemProps?: commonObj;
 }
 
 export interface DesignDate {
@@ -21,6 +22,8 @@ interface commonObj {
 
 export interface RenderDate {
   renderComponents: Component[];
+  changeSelectComponent: ChangeSelectComponent;
 }
 
 type SelectComponent = (attrs: Component) => void;
+type ChangeSelectComponent = (uuid: string) => void;
