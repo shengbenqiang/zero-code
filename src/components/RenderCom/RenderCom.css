@@ -6,14 +6,34 @@
 }
 .render-item-component {
     width: 100%;
-    min-height: 5rem;
+    min-height: 5.5rem;
     box-sizing: border-box;
+    padding: .5rem;
+    position: relative;
+    margin-bottom: 1rem;
 }
 .render-form-item {
     width: 100%;
     margin: 0!important;
 }
 .render-select-item-component {
-    border: 2px solid rgba(24, 144, 255, 0.5);
+    border: 2px solid rgba(24, 144, 255, 0.8);
     border-radius: .3rem;
+}
+.render-com-item-operate {
+    width: 10rem;
+    height: 2.5rem;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    box-sizing: border-box;
+    background-color: rgba(24, 144, 255, 0.8);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    z-index: 2;
+}
+.render-com-icon-color {
+    color: #fff;
 }

@@ -1,8 +1,8 @@
-export interface Component {
+export interface Component extends commonObj {
   key: string;
   name: string;
   tag: string;
-  uuid?: string;
+  uuid: string;
   content?: string;
   props: commonObj;
   config?: object;
@@ -17,7 +17,7 @@ export interface DesignDate {
 }
 
 interface commonObj {
-  [key: string]: string | boolean | number | undefined;
+  [key: string]: string | boolean | number | undefined | unknown;
 }
 
 export interface RenderDate {

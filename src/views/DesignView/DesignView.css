@@ -18,3 +18,26 @@
     height: 100%;
     box-sizing: border-box;
 }
+.design-view-tab-con {
+    height: calc(100% - 4rem);
+}
+.design-view-tab-con > div:nth-child(1) {
+    margin: 0!important;
+}
+.design-view-tab-con > div:nth-child(1) > div > div > div > div {
+    width: 100%;
+}
+.design-view-tab-con > div:nth-child(1) > div > div > div > div > div > div {
+    width: 50%;
+    text-align: center;
+}
+.design-view-tab-con > div:nth-child(1) > div > div > div > div > div > div:nth-child(1) {
+    margin: 0!important;
+}
+.design-view-tab-con > div:nth-child(3) {
+    height: 100%;
+}
+.design-view-tab-item-empty {
+    transform: translateY(30vh);
+}
+

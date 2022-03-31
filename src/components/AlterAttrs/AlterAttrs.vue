@@ -1,32 +1,16 @@
 <template>
-  <div class="input-attrs-con">
+  <div class="alter-attrs-con">
     <div class="common-right-item-attr">
       <span>组件唯一 key：</span>
       <a-input v-model:value="uuid" disabled />
     </div>
     <div class="common-right-item-attr">
-      <span>禁用：</span>
+      <span>显示图标：</span>
       <a-switch
-        v-model:checked="props.disabled"
+        v-model:checked="props.showIcon"
         checked-children="是"
         un-checked-children="否"
       />
-    </div>
-    <div class="common-right-item-attr">
-      <span>展示边框：</span>
-      <a-switch
-        v-model:checked="props.bordered"
-        checked-children="是"
-        un-checked-children="否"
-      />
-    </div>
-    <div class="common-right-item-attr">
-      <span>输入提示：</span>
-      <a-input v-model:value="props.placeholder" />
-    </div>
-    <div class="common-right-item-attr">
-      <span>最大长度：</span>
-      <a-input v-model:value="props.maxlength" />
     </div>
     <div class="common-right-item-attr">
       <span>元素宽度：</span>
@@ -38,12 +22,21 @@
       />
     </div>
     <div class="common-right-item-attr">
-      <span>标签内容：</span>
-      <a-input v-model:value="formItemProps.label" />
+      <span>提示内容：</span>
+      <a-input v-model:value="props.message" />
     </div>
-    <div class="common-right-item-attr">
-      <span>标签字段：</span>
-      <a-input v-model:value="formItemProps.name" />
+    <div class="button-attrs-item-attr">
+      <span>提示类型：</span>
+      <a-select
+        v-model:value="props.type"
+        class="button-attrs-item-attr-select"
+      >
+        <template v-for="itemType in config.alterType" :key="itemType.key">
+          <a-select-option :value="itemType.value">
+            {{ itemType.key }}
+          </a-select-option>
+        </template>
+      </a-select>
     </div>
     <div class="button-attrs-item-attr">
       <span>垂直方向：</span>
@@ -74,35 +67,23 @@
         </template>
       </a-select>
     </div>
-    <div class="common-right-item-attr">
-      <span>输入框大小：</span>
-      <a-select
-        v-model:value="props.size"
-        class="common-right-item-attr-select"
-      >
-        <template v-for="itemSize in config.size" :key="itemSize.key">
-          <a-select-option :value="itemSize.value">
-            {{ itemSize.key }}
-          </a-select-option>
-        </template>
-      </a-select>
-    </div>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent, inject } from "vue";
-import "./InputAttrs.css";
+import "./AlterAttrs.css";
 import "@/assets/commonCss/rightCom.css";
 import { DesignDate } from "@/untils/types";
 
 export default defineComponent({
-  name: "InputAttrs",
+  name: "AlterAttrs",
   setup() {
     const DesignView: DesignDate = inject<DesignDate>(
       "DesignView",
       {} as DesignDate
     );
+
     const { selectComponent } = DesignView;
 
     return {

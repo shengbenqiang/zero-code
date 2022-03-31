@@ -14,15 +14,6 @@
     white-space: nowrap;
     user-select: none;
 }
-.common-right-all-attrs {
-    width: 100%;
-    height: calc(100 - 4rem);
-    overflow-x: hidden;
-    overflow-y: scroll;
-}
-.common-right-all-attrs::-webkit-scrollbar {
-    display: none;
-}
 .common-right-item-attr-select {
     width: calc(100% - 10rem);
     display: flex;
