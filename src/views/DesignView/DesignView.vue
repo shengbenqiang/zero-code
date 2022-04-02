@@ -42,7 +42,7 @@ import OperateCom from "@/components/OperateCom/OperateCom.vue";
 import RightComAttrs from "@/components/RightComAttrs/RightComAttrs.vue";
 import LeftComponents from "@/components/LeftComponents/LeftComponents.vue";
 import { Component, DesignDate } from "@/untils/types";
-import { guid } from "@/untils/renderSolve";
+import { guid, deepCloneCom } from "@/untils/renderSolve";
 
 export default defineComponent({
   name: "DesignView",
@@ -57,20 +57,7 @@ export default defineComponent({
     const renderComponents = ref<Component[]>([]);
     const activeKey = ref<string>("component");
 
-    function getComponentAttributes(attrs: Component) {
-      if (attrs.uuid) {
-        renderComponents.value.forEach((itemCom) => {
-          if (itemCom.uuid === attrs.uuid) {
-            Object.assign(itemCom, attrs);
-          }
-        });
-      } else {
-        attrs.uuid = guid();
-        renderComponents.value.push(attrs);
-      }
-      Object.assign(selectComponent, attrs);
-    }
-
+    // 已渲染组件的切换方法
     function changeSelectComponent(uuid: string) {
       const findCom = renderComponents.value.find((com) => com.uuid === uuid);
       Object.keys(selectComponent).map((key) => {
@@ -78,13 +65,23 @@ export default defineComponent({
       });
       Object.assign(selectComponent, findCom);
     }
+    // 左边点击新增渲染组件方法
+    function addRenderComponent(com: Component) {
+      const tempCom = deepCloneCom(com);
+      tempCom.uuid = guid();
+      renderComponents.value.push(tempCom);
+      Object.keys(selectComponent).map((key) => {
+        delete selectComponent[key];
+      });
+      Object.assign(selectComponent, tempCom);
+    }
 
     provide(
       "DesignView",
       reactive<DesignDate>({
         name: "DesignView",
         selectComponent,
-        getComponentAttributes,
+        addRenderComponent,
       })
     );
 

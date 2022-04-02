@@ -2,12 +2,12 @@
   <div class="alter-attrs-con">
     <div class="common-right-item-attr">
       <span>组件唯一 key：</span>
-      <a-input v-model:value="uuid" disabled />
+      <a-input v-model:value="selectComponent.uuid" disabled />
     </div>
     <div class="common-right-item-attr">
       <span>显示图标：</span>
       <a-switch
-        v-model:checked="props.showIcon"
+        v-model:checked="selectComponent.props.showIcon"
         checked-children="是"
         un-checked-children="否"
       />
@@ -15,7 +15,7 @@
     <div class="common-right-item-attr">
       <span>元素宽度：</span>
       <a-input
-        v-model:value="formItemProps.span"
+        v-model:value="selectComponent.formItemProps.span"
         type="number"
         :max="24"
         :min="4"
@@ -23,15 +23,18 @@
     </div>
     <div class="common-right-item-attr">
       <span>提示内容：</span>
-      <a-input v-model:value="props.message" />
+      <a-input v-model:value="selectComponent.props.message" />
     </div>
     <div class="button-attrs-item-attr">
       <span>提示类型：</span>
       <a-select
-        v-model:value="props.type"
+        v-model:value="selectComponent.props.type"
         class="button-attrs-item-attr-select"
       >
-        <template v-for="itemType in config.alterType" :key="itemType.key">
+        <template
+          v-for="itemType in selectComponent.config.alterType"
+          :key="itemType.key"
+        >
           <a-select-option :value="itemType.value">
             {{ itemType.key }}
           </a-select-option>
@@ -41,10 +44,13 @@
     <div class="button-attrs-item-attr">
       <span>垂直方向：</span>
       <a-select
-        v-model:value="locateProps.align"
+        v-model:value="selectComponent.locateProps.align"
         class="button-attrs-item-attr-select"
       >
-        <template v-for="itemAlign in config.locateAlign" :key="itemAlign.key">
+        <template
+          v-for="itemAlign in selectComponent.config.locateAlign"
+          :key="itemAlign.key"
+        >
           <a-select-option :value="itemAlign.value">
             {{ itemAlign.key }}
           </a-select-option>
@@ -54,11 +60,11 @@
     <div class="button-attrs-item-attr">
       <span>水平方向：</span>
       <a-select
-        v-model:value="locateProps.justify"
+        v-model:value="selectComponent.locateProps.justify"
         class="button-attrs-item-attr-select"
       >
         <template
-          v-for="itemJustify in config.locateJustify"
+          v-for="itemJustify in selectComponent.config.locateJustify"
           :key="itemJustify.key"
         >
           <a-select-option :value="itemJustify.value">
@@ -87,11 +93,7 @@ export default defineComponent({
     const { selectComponent } = DesignView;
 
     return {
-      uuid: selectComponent.uuid,
-      props: selectComponent.props,
-      config: selectComponent.config,
-      locateProps: selectComponent.locateProps,
-      formItemProps: selectComponent.formItemProps,
+      selectComponent,
     };
   },
 });

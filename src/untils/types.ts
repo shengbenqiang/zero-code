@@ -13,7 +13,7 @@ export interface Component extends commonObj {
 export interface DesignDate {
   name: string;
   selectComponent: Component;
-  getComponentAttributes: SelectComponent;
+  addRenderComponent: SelectComponent;
 }
 
 interface commonObj {

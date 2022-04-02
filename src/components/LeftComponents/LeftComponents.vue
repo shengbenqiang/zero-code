@@ -3,11 +3,16 @@
     <div class="left-components-block-con">
       <div class="left-components-block-con-title">公共组件</div>
       <div class="left-components-block-con-components-con">
-        <ItemComponent
-          v-for="itemComponent in componentGeneralArr"
-          :key="itemComponent.key"
-          :component="itemComponent"
-        />
+        <draggable
+          :group="{ name: 'component', pull: 'clone', put: false }"
+          :sort="true"
+        >
+          <ItemComponent
+            v-for="itemComponent in componentGeneralArr"
+            :key="itemComponent.key"
+            :component="itemComponent"
+          />
+        </draggable>
       </div>
     </div>
     <div class="left-components-block-con">
@@ -75,11 +80,13 @@ import {
   componentDataDisplayArr,
 } from "@/untils/components";
 import ItemComponent from "@/components/ItemComponent/ItemComponent.vue";
+import { VueDraggableNext } from "vue-draggable-next";
 
 export default defineComponent({
   name: "LeftComponents",
   components: {
     ItemComponent,
+    draggable: VueDraggableNext,
   },
   setup() {
     return {

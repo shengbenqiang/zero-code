@@ -11,3 +11,7 @@ export const guid = (): string => {
 export const deepClone = (data: Component[]): Component[] => {
   return JSON.parse(JSON.stringify(data));
 };
+
+export const deepCloneCom = (data: Component): Component => {
+  return JSON.parse(JSON.stringify(data));
+};

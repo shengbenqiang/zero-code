@@ -23,10 +23,10 @@ export default defineComponent({
       "DesignView",
       {} as DesignDate
     );
-    const { getComponentAttributes } = DesignView;
+    const { addRenderComponent } = DesignView;
 
     const componentClick = () => {
-      getComponentAttributes(props.component);
+      addRenderComponent(props.component);
     };
 
     return {
