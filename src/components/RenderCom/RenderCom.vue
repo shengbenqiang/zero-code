@@ -1,6 +1,10 @@
 <template>
   <a-form class="render-com-con">
-    <draggable v-model="renderArr" group="component">
+    <draggable
+      v-model="renderArr"
+      group="component"
+      class="render-com-con-drag-room"
+    >
       <template v-for="itemCom in renderArr" :key="itemCom.uuid">
         <a-row
           class="render-item-component"
