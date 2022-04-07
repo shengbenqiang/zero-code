@@ -6,7 +6,8 @@
         <draggable
           :group="{ name: 'component', pull: 'clone', put: false }"
           :sort="true"
-          @end="handleLeftDragEnd"
+          @change="dragLog"
+          :move="dragMove"
         >
           <ItemComponent
             v-for="itemComponent in componentGeneralArr"
@@ -90,12 +91,17 @@ export default defineComponent({
     draggable: VueDraggableNext,
   },
   setup() {
-    function handleLeftDragEnd(event: DragEvent) {
-      console.log(event.to);
+    function dragLog(e: unknown) {
+      console.log(e);
+    }
+
+    function dragMove(e: unknown) {
+      console.log(e);
     }
 
     return {
-      handleLeftDragEnd,
+      dragLog,
+      dragMove,
       componentLayoutArr,
       componentGeneralArr,
       componentFeedbackArr,
