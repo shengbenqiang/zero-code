@@ -5,9 +5,8 @@
       <div class="left-components-block-con-components-con">
         <draggable
           :group="{ name: 'component', pull: 'clone', put: false }"
-          :sort="true"
-          @change="dragLog"
-          :move="dragMove"
+          :sort="false"
+          @end="dragEnd"
         >
           <ItemComponent
             v-for="itemComponent in componentGeneralArr"
@@ -83,6 +82,7 @@ import {
 } from "@/untils/components";
 import ItemComponent from "@/components/ItemComponent/ItemComponent.vue";
 import { VueDraggableNext } from "vue-draggable-next";
+import { OpenObject } from "@/untils/types";
 
 export default defineComponent({
   name: "LeftComponents",
@@ -91,17 +91,13 @@ export default defineComponent({
     draggable: VueDraggableNext,
   },
   setup() {
-    function dragLog(e: unknown) {
+    function dragEnd(e: OpenObject) {
       console.log(e);
-    }
-
-    function dragMove(e: unknown) {
-      console.log(e);
+      console.log(e.to.className);
     }
 
     return {
-      dragLog,
-      dragMove,
+      dragEnd,
       componentLayoutArr,
       componentGeneralArr,
       componentFeedbackArr,

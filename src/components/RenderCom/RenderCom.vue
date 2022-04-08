@@ -2,8 +2,9 @@
   <a-form class="render-com-con">
     <draggable
       v-model="renderArr"
-      group="component"
+      :group="{ name: 'component' }"
       class="render-com-con-drag-room"
+      @add="dragAdd"
     >
       <template v-for="itemCom in renderArr" :key="itemCom.uuid">
         <a-row
@@ -90,6 +91,10 @@ export default defineComponent({
 
     const renderArr = ref<Component[]>([]);
 
+    function dragAdd(event: unknown) {
+      console.log(event);
+    }
+
     watch(
       () => RenderView.renderComponents,
       (newValue) => {
@@ -117,17 +122,8 @@ export default defineComponent({
       console.log(iconType);
     }
 
-    function dragStart() {
-      console.log("开始拖拽");
-    }
-
-    function dragEnd() {
-      console.log("结束拖拽");
-    }
-
     return {
-      dragEnd,
-      dragStart,
+      dragAdd,
       renderArr,
       selectComponent,
       handleIconClick,

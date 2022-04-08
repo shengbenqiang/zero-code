@@ -16,6 +16,14 @@ export interface DesignDate {
   addRenderComponent: SelectComponent;
 }
 
+export interface OpenObject extends SelfEvent {
+  [key: string]: unknown;
+}
+
+export interface SelfEvent {
+  to: OpenObject;
+}
+
 interface commonObj {
   [key: string]: string | boolean | number | undefined | unknown;
 }
