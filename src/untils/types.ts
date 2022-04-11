@@ -10,6 +10,12 @@ export interface Component extends commonObj {
   formItemProps?: commonObj;
 }
 
+export interface LeftComponent {
+  key: string;
+  title: string;
+  components: Component[];
+}
+
 export interface DesignDate {
   name: string;
   selectComponent: Component;

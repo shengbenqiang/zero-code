@@ -1,6 +1,6 @@
-import { Component } from "./types";
+import { Component, LeftComponent } from "./types";
 
-export const componentGeneralArr: Component[] = [
+const componentGeneralArr: Component[] = [
   {
     key: "ButtonAttrs",
     name: "按钮",
@@ -119,7 +119,7 @@ export const componentGeneralArr: Component[] = [
   },
 ];
 
-export const componentLayoutArr: Component[] = [
+const componentLayoutArr: Component[] = [
   {
     key: "GridRow",
     name: "栅格",
@@ -143,7 +143,7 @@ export const componentLayoutArr: Component[] = [
   },
 ];
 
-export const componentNavigationArr: Component[] = [
+const componentNavigationArr: Component[] = [
   {
     key: "Affix",
     name: "固钉",
@@ -195,7 +195,7 @@ export const componentNavigationArr: Component[] = [
   },
 ];
 
-export const componentDataEntryArr: Component[] = [
+const componentDataEntryArr: Component[] = [
   {
     key: "AutoComplete",
     name: "自动完成",
@@ -384,7 +384,7 @@ export const componentDataEntryArr: Component[] = [
   },
 ];
 
-export const componentDataDisplayArr: Component[] = [
+const componentDataDisplayArr: Component[] = [
   {
     key: "Avatar",
     name: "头像",
@@ -513,7 +513,7 @@ export const componentDataDisplayArr: Component[] = [
   },
 ];
 
-export const componentFeedbackArr: Component[] = [
+const componentFeedbackArr: Component[] = [
   {
     key: "AlterAttrs",
     name: "警告提示",
@@ -631,5 +631,38 @@ export const componentFeedbackArr: Component[] = [
     tag: "a-skeleton",
     uuid: "",
     props: {},
+  },
+];
+
+export const LeftComponents: LeftComponent[] = [
+  {
+    key: "common",
+    title: "公共组件",
+    components: componentGeneralArr,
+  },
+  {
+    key: "layout",
+    title: "布局组件",
+    components: componentLayoutArr,
+  },
+  {
+    key: "navigate",
+    title: "导航组件",
+    components: componentNavigationArr,
+  },
+  {
+    key: "entry",
+    title: "输入组件",
+    components: componentDataEntryArr,
+  },
+  {
+    key: "dataDis",
+    title: "展示组件",
+    components: componentDataDisplayArr,
+  },
+  {
+    key: "feedback",
+    title: "提示组件",
+    components: componentFeedbackArr,
   },
 ];

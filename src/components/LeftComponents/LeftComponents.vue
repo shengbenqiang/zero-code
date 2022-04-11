@@ -1,85 +1,33 @@
 <template>
   <div class="left-components">
-    <div class="left-components-block-con">
-      <div class="left-components-block-con-title">公共组件</div>
-      <div class="left-components-block-con-components-con">
+    <template v-for="item in LeftComponents" :key="item.key">
+      <div class="left-components-block-con">
+        <div class="left-components-block-con-title">{{ item.title }}</div>
         <draggable
+          class="left-components-block-con-components-con"
+          :list="item.components"
           :group="{ name: 'component', pull: 'clone', put: false }"
           :sort="false"
+          :clone="handleCloneCom"
+          draggable=".left-components-drag-item"
           @end="dragEnd"
         >
           <ItemComponent
-            v-for="itemComponent in componentGeneralArr"
+            class="left-components-drag-item"
+            v-for="itemComponent in item.components"
             :key="itemComponent.key"
             :component="itemComponent"
           />
         </draggable>
       </div>
-    </div>
-    <div class="left-components-block-con">
-      <div class="left-components-block-con-title">布局组件</div>
-      <div class="left-components-block-con-components-con">
-        <ItemComponent
-          v-for="itemComponent in componentLayoutArr"
-          :key="itemComponent.key"
-          :component="itemComponent"
-        />
-      </div>
-    </div>
-    <div class="left-components-block-con">
-      <div class="left-components-block-con-title">导航组件</div>
-      <div class="left-components-block-con-components-con">
-        <ItemComponent
-          v-for="itemComponent in componentNavigationArr"
-          :key="itemComponent.key"
-          :component="itemComponent"
-        />
-      </div>
-    </div>
-    <div class="left-components-block-con">
-      <div class="left-components-block-con-title">输入组件</div>
-      <div class="left-components-block-con-components-con">
-        <ItemComponent
-          v-for="itemComponent in componentDataEntryArr"
-          :key="itemComponent.key"
-          :component="itemComponent"
-        />
-      </div>
-    </div>
-    <div class="left-components-block-con">
-      <div class="left-components-block-con-title">展示组件</div>
-      <div class="left-components-block-con-components-con">
-        <ItemComponent
-          v-for="itemComponent in componentDataDisplayArr"
-          :key="itemComponent.key"
-          :component="itemComponent"
-        />
-      </div>
-    </div>
-    <div class="left-components-block-con">
-      <div class="left-components-block-con-title">提示组件</div>
-      <div class="left-components-block-con-components-con">
-        <ItemComponent
-          v-for="itemComponent in componentFeedbackArr"
-          :key="itemComponent.key"
-          :component="itemComponent"
-        />
-      </div>
-    </div>
+    </template>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
 import "./LeftComponents.css";
-import {
-  componentLayoutArr,
-  componentGeneralArr,
-  componentFeedbackArr,
-  componentDataEntryArr,
-  componentNavigationArr,
-  componentDataDisplayArr,
-} from "@/untils/components";
+import { LeftComponents } from "@/untils/components";
 import ItemComponent from "@/components/ItemComponent/ItemComponent.vue";
 import { VueDraggableNext } from "vue-draggable-next";
 import { OpenObject } from "@/untils/types";
@@ -96,14 +44,14 @@ export default defineComponent({
       console.log(e.to.className);
     }
 
+    function handleCloneCom(origin: unknown) {
+      console.log(origin);
+    }
+
     return {
       dragEnd,
-      componentLayoutArr,
-      componentGeneralArr,
-      componentFeedbackArr,
-      componentDataEntryArr,
-      componentNavigationArr,
-      componentDataDisplayArr,
+      LeftComponents,
+      handleCloneCom,
     };
   },
 });
